@@ -1,0 +1,250 @@
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans); }
+  .container { padding: 1.5rem 0.5rem; max-width: 680px; }
+  .doc-title { font-size: 13px; color: var(--color-text-secondary); margin-bottom: 0.25rem; letter-spacing: 0.02em; }
+  .main-title { font-size: 22px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 0.25rem; }
+  .subtitle { font-size: 13px; color: var(--color-text-tertiary); margin-bottom: 2rem; }
+  .l1-block { margin-bottom: 1.5rem; }
+  .l1-header { display: flex; align-items: center; gap: 10px; padding: 0.65rem 1rem; border-radius: var(--border-radius-md); margin-bottom: 0.5rem; }
+  .l1-num { font-size: 11px; font-weight: 500; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .l1-title { font-size: 15px; font-weight: 500; }
+  .l2-list { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 4px; }
+  .l2-item { display: grid; grid-template-columns: 16px 1fr; gap: 10px; align-items: start; padding: 0.55rem 1rem; border-radius: var(--border-radius-md); background: var(--color-background-secondary); border-left: 2px solid transparent; }
+  .l2-dot { width: 6px; height: 6px; border-radius: 50%; margin-top: 7px; flex-shrink: 0; }
+  .l2-content { }
+  .l2-label { font-size: 14px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 2px; }
+  .l2-desc { font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; }
+  .source-tag { font-size: 11px; color: var(--color-text-tertiary); margin-top: 2px; display: block; }
+  .divider { height: 0.5px; background: var(--color-border-tertiary); margin: 1.5rem 0; }
+
+  .blk-purple .l1-header { background: #EEEDFE; }
+  .blk-purple .l1-num { background: #AFA9EC; color: #26215C; }
+  .blk-purple .l1-title { color: #3C3489; }
+  .blk-purple .l2-item { border-left-color: #AFA9EC; }
+  .blk-purple .l2-dot { background: #7F77DD; }
+
+  .blk-teal .l1-header { background: #E1F5EE; }
+  .blk-teal .l1-num { background: #5DCAA5; color: #04342C; }
+  .blk-teal .l1-title { color: #0F6E56; }
+  .blk-teal .l2-item { border-left-color: #5DCAA5; }
+  .blk-teal .l2-dot { background: #1D9E75; }
+
+  .blk-coral .l1-header { background: #FAECE7; }
+  .blk-coral .l1-num { background: #F0997B; color: #4A1B0C; }
+  .blk-coral .l1-title { color: #993C1D; }
+  .blk-coral .l2-item { border-left-color: #F0997B; }
+  .blk-coral .l2-dot { background: #D85A30; }
+
+  .blk-blue .l1-header { background: #E6F1FB; }
+  .blk-blue .l1-num { background: #85B7EB; color: #042C53; }
+  .blk-blue .l1-title { color: #185FA5; }
+  .blk-blue .l2-item { border-left-color: #85B7EB; }
+  .blk-blue .l2-dot { background: #378ADD; }
+
+  .blk-amber .l1-header { background: #FAEEDA; }
+  .blk-amber .l1-num { background: #EF9F27; color: #412402; }
+  .blk-amber .l1-title { color: #854F0B; }
+  .blk-amber .l2-item { border-left-color: #EF9F27; }
+  .blk-amber .l2-dot { background: #BA7517; }
+
+  @media (prefers-color-scheme: dark) {
+    .blk-purple .l1-header { background: #26215C; }
+    .blk-purple .l1-num { background: #534AB7; color: #EEEDFE; }
+    .blk-purple .l1-title { color: #CECBF6; }
+    .blk-purple .l2-item { border-left-color: #534AB7; }
+    .blk-teal .l1-header { background: #04342C; }
+    .blk-teal .l1-num { background: #0F6E56; color: #E1F5EE; }
+    .blk-teal .l1-title { color: #9FE1CB; }
+    .blk-teal .l2-item { border-left-color: #0F6E56; }
+    .blk-coral .l1-header { background: #4A1B0C; }
+    .blk-coral .l1-num { background: #993C1D; color: #FAECE7; }
+    .blk-coral .l1-title { color: #F5C4B3; }
+    .blk-coral .l2-item { border-left-color: #993C1D; }
+    .blk-blue .l1-header { background: #042C53; }
+    .blk-blue .l1-num { background: #185FA5; color: #E6F1FB; }
+    .blk-blue .l1-title { color: #B5D4F4; }
+    .blk-blue .l2-item { border-left-color: #185FA5; }
+    .blk-amber .l1-header { background: #412402; }
+    .blk-amber .l1-num { background: #854F0B; color: #FAEEDA; }
+    .blk-amber .l1-title { color: #FAC775; }
+    .blk-amber .l2-item { border-left-color: #854F0B; }
+  }
+</style>
+
+<div class="container">
+  <div class="doc-title">L2 学习笔记 · 来源：知乎高赞回答综合整理</div>
+  <div class="main-title">高中语文学习方法</div>
+  <div class="subtitle">提炼自五篇高赞知乎文章 · 覆盖基础积累 / 阅读 / 文言 / 写作 / 应试五大模块</div>
+
+  <div class="l1-block blk-purple">
+    <div class="l1-header">
+      <div class="l1-num">1</div>
+      <div class="l1-title">基础积累与知识管理</div>
+    </div>
+    <ul class="l2-list">
+      <li class="l2-item">
+        <div class="l2-dot"></div>
+        <div class="l2-content">
+          <div class="l2-label">建立「进步本」，不是错题本</div>
+          <div class="l2-desc">做错的题、不会的知识、新学到的点，全部整理进专用本子。核心在于反复复习直到不再遗忘，而非只是抄写——区别在于有没有「被复习到」的闭环。</div>
+          <span class="source-tag">→ 高中语文学习的一些经验和方法</span>
+        </div>
+      </li>
+      <li class="l2-item">
+        <div class="l2-dot"></div>
+        <div class="l2-content">
+          <div class="l2-label">成语 / 文化常识每日定量积累</div>
+          <div class="l2-desc">每天固定记 5 个成语或文化常识词条，准备专用小册子，随时翻阅。持续一年后，选择题相关题型基本不再失分。</div>
+          <span class="source-tag">→ 高中语文学习有什么方法</span>
+        </div>
+      </li>
+      <li class="l2-item">
+        <div class="l2-dot"></div>
+        <div class="l2-content">
+          <div class="l2-label">「多读多划多查多写」四步课文学习法</div>
+          <div class="l2-desc">精读时用不同符号标记重点句、名句、生词；遇疑难随手做标记，尽量当天查工具书解决；同时动笔将重点抄写一遍，强化记忆。</div>
+          <span class="source-tag">→ 高中语文学习方法（不看真后悔）</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="l1-block blk-teal">
+    <div class="l1-header">
+      <div class="l1-num">2</div>
+      <div class="l1-title">阅读理解提升</div>
+    </div>
+    <ul class="l2-list">
+      <li class="l2-item">
+        <div class="l2-dot"></div>
+        <div class="l2-content">
+          <div class="l2-label">精读 vs 泛读分类处理</div>
+          <div class="l2-desc">教读课文做精读（字词句篇全面掌握，精彩段落成诵）；自读课文做泛读甚至跳读（提升阅读速度，高考亦有考查）。二者混用会浪费时间。</div>
+          <span class="source-tag">→ 高中语文学习方法（不看真后悔）</span>
+        </div>
+      </li>
+      <li class="l2-item">
+        <div class="l2-dot"></div>
+        <div class="l2-content">
+          <div class="l2-label">搭建知识体系，而非积累碎片</div>
+          <div class="l2-desc">各题型（论述类、文学类、实用类）应梳理出固定答题框架。无体系只靠碎片积累，成绩会忽高忽低；有框架后遇到熟题型能快速调用思路。</div>
+          <span class="source-tag">→ 高考语文有哪些答题技巧</span>
+        </div>
+      </li>
+      <li class="l2-item">
+        <div class="l2-dot"></div>
+        <div class="l2-content">
+          <div class="l2-label">高一高二保持课外阅读习惯</div>
+          <div class="l2-desc">高一高二可读经典名著、优秀散文与时评，以提升语感和积累作文素材；高三不建议整本阅读，可用短文章做节奏调节。</div>
+          <span class="source-tag">→ 高中语文学习方法（1）</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="l1-block blk-coral">
+    <div class="l1-header">
+      <div class="l1-num">3</div>
+      <div class="l1-title">文言文专项突破</div>
+    </div>
+    <ul class="l2-list">
+      <li class="l2-item">
+        <div class="l2-dot"></div>
+        <div class="l2-content">
+          <div class="l2-label">「多读 · 多背 · 多练」三位一体</div>
+          <div class="l2-desc">必背篇目一字不落背诵（含标点），潜移默化中内化古人用语习惯；同时每课归纳通假字、一词多义、词类活用、特殊句式，用固定符号标注，积累例句。</div>
+          <span class="source-tag">→ 高中语文学习方法（不看真后悔）</span>
+        </div>
+      </li>
+      <li class="l2-item">
+        <div class="l2-dot"></div>
+        <div class="l2-content">
+          <div class="l2-label">翻译三要素：逐字 · 补省略 · 还倒装</div>
+          <div class="l2-desc">①一字一义逐字翻译（防古今异义混淆）；②括号补出省略的主语、介词；③宾语前置、定语后置等倒装结构，务必还原现代语序后再写。</div>
+          <span class="source-tag">→ 高中语文学霸的 24 个学习方法</span>
+        </div>
+      </li>
+      <li class="l2-item">
+        <div class="l2-dot"></div>
+        <div class="l2-content">
+          <div class="l2-label">题目精做，一题多用</div>
+          <div class="l2-desc">做完文言文阅读不止于对答案——将全文口译一遍，把不熟悉的实词、文化常识摘抄进笔记。文言文传主的事迹与精神，还可顺手整理为作文素材。</div>
+          <span class="source-tag">→ 高中语文怎么提分</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="l1-block blk-blue">
+    <div class="l1-header">
+      <div class="l1-num">4</div>
+      <div class="l1-title">写作能力提升</div>
+    </div>
+    <ul class="l2-list">
+      <li class="l2-item">
+        <div class="l2-dot"></div>
+        <div class="l2-content">
+          <div class="l2-label">素材积累 + 内化，不是「搬运」</div>
+          <div class="l2-desc">集中研读 10–15 个经典素材，同步积累对应名言警句。关键是能将素材「化为己用」——从不同角度挖掘同一素材的多层含义，而非死记生搬。</div>
+          <span class="source-tag">→ 高中语文怎么提分</span>
+        </div>
+      </li>
+      <li class="l2-item">
+        <div class="l2-dot"></div>
+        <div class="l2-content">
+          <div class="l2-label">先审题再动笔，写前列小提纲</div>
+          <div class="l2-desc">考场作文先一字一句读完题目要求，写小提纲后再创作，预留至少 40 分钟写正文。段落结构可套用「分论点 → 名言 → 分析 → 举例」的四步骨架。</div>
+          <span class="source-tag">→ 高中语文学习方法（1）</span>
+        </div>
+      </li>
+      <li class="l2-item">
+        <div class="l2-dot"></div>
+        <div class="l2-content">
+          <div class="l2-label">坚持写日记 / 读书笔记，锻炼语感</div>
+          <div class="l2-desc">每天 200 字「豆腐块」写作，用来测试自己脑中词汇盲区；读书时摘抄优美词句和精彩片段，建立个人「语文素材库」，解决写作时「无米之炊」的问题。</div>
+          <span class="source-tag">→ 高中语文学习的一些经验和方法</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="l1-block blk-amber">
+    <div class="l1-header">
+      <div class="l1-num">5</div>
+      <div class="l1-title">高效背诵与记忆策略</div>
+    </div>
+    <ul class="l2-list">
+      <li class="l2-item">
+        <div class="l2-dot"></div>
+        <div class="l2-content">
+          <div class="l2-label">间隔重复背诵法</div>
+          <div class="l2-desc">今天读→次日再读→一周后→两周后→一两个月后，间隔拉长的周期性重复，比连续背诵的长时记忆效果高出数倍。碎片时间（走路、坐车）也可随时默背。</div>
+          <span class="source-tag">→ 高中语文学霸的 24 个学习方法</span>
+        </div>
+      </li>
+      <li class="l2-item">
+        <div class="l2-dot"></div>
+        <div class="l2-content">
+          <div class="l2-label">结构层次法背诵长篇古文</div>
+          <div class="l2-desc">先拆解文章逻辑线索（如《醉翁亭记》：滁人游→太守宴→众宾欢→太守醉），逐段背熟后再串联全篇。比死背全文效率高，也不易「断片」。</div>
+          <span class="source-tag">→ 高中语文学习方法的精髓</span>
+        </div>
+      </li>
+      <li class="l2-item">
+        <div class="l2-dot"></div>
+        <div class="l2-content">
+          <div class="l2-label">「多背」的底层逻辑：理解先行</div>
+          <div class="l2-desc">背诵促进理解，理解又反过来巩固记忆。背古诗文前先理清意境和情感脉络，将自己代入诗中角色，背得快也记得久，不是死记硬背而是有感情的强记。</div>
+          <span class="source-tag">→ 高中语文学习方法的精髓</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="divider"></div>
+  <div style="font-size: 12px; color: var(--color-text-tertiary); line-height: 1.7;">
+    综合自：《高中语文学习的一些经验和方法》《高中语文学霸的24个学习方法》《高中语文学习方法（不看真后悔）》《高中语文怎么提分》《高中语文学习方法的精髓》
+  </div>
+</div>
